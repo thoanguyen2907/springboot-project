@@ -16,15 +16,15 @@ public class CustomerService {
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-     List<Customer> getCustomer() {
+     List<Customer> getCustomers() {
         return   customerRepository.findAll();
     }
 
     Customer getCustomer(Long id) {
-        return getCustomer()
-                .stream()
-                .filter(customer -> customer.getId().equals(id))
-                .findFirst()
-                .orElseThrow(()-> new NotFoundException("customer with ID " + id +  " not found"));
+        return customerRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new NotFoundException(
+                                "customer with id " + id + " not found"));
     }
 }
