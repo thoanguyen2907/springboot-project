@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @FeignClient(
-        value = "com/example/springboot/jsonplaceholder",
+        value = "jsonplaceholder",
         url = "https://jsonplaceholder.typicode.com/"
 )
 public interface JSONPlaceHolderClient {
@@ -16,5 +16,5 @@ public interface JSONPlaceHolderClient {
     List<Post> getPosts();
 
     @GetMapping("posts/{postId}")
-    boolean getPost(@PathVariable("postId") Integer postId);
+    Post getPost(@PathVariable("postId") Integer postId);
 }
