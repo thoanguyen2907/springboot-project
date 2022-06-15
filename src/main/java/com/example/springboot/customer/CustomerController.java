@@ -13,8 +13,12 @@ public class CustomerController {
        this.customerService = customerService;
     }
     @GetMapping(value = "all")
-    List<Customer>  getCustomer() {
+    List<Customer>  getCustomers() {
         return customerService.getCustomers();
+    }
+    @GetMapping(path = "{customerId}")
+    Customer  getCustomer(@PathVariable("customerId") Long id) {
+        return customerService.getCustomer(id);
     }
     @PostMapping
     void createNewCustomer(@RequestBody Customer customer) {
